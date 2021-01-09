@@ -1,20 +1,22 @@
-function SetEntry(){
+function SetEntry() {
   var t = new Date()
   var content = document.getElementById("inputarea").innerHTML();
-  var timething = t.getMonth()+1+"."+t.getDate()+"."+t.getFullYear();
-  document.localStorage.setItem(timething,content);
+  var timething = t.getMonth() + 1 + "." + t.getDate() + "." + t.getFullYear();
+  localStorage.setItem(timething, content);
 }
-function setup(){
-  document.localStorage.clear();
-  document.localStorage.setItem("ROOT","");
+function setup() {
+  localStorage.clear();
+  localStorage.setItem("ROOT", "");
 }
 function read() {
-  if (!document.localStorage.getItem("ROOT")){
+  if (!localStorage.getItem("ROOT")) {
     setup();
   }
+  var storelace = document.getElementById("record");
   var storeRoot = window.localStorage.getItem('ROOT');
-  if (storeRoot==""){
-    var storelace =document.getElementById("record");
-    storelace.appendChild()
+  if (storeRoot == "") {
+    storelace.innerHTML = "<p class='javagen'>You haven't put anything yet</p>"
   }
 }
+
+read();
