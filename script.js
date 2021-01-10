@@ -1,26 +1,35 @@
 function SetEntry() {
-  var t = new Date()
-  var content = document.getElementById("inputarea").innerHTML();
-  var timething = t.getMonth() + 1 + "." + t.getDate() + "." + t.getFullYear();
-  localStorage.setItem(timething, content);
-  root = localStorage.getItem("ROOT");
-  localStorage.setItem("ROOT",root + ",,"+timething);
+  var t = new Date();
+  var content = document.getElementById("inputarea").innerHTML;
+  var timething = t.getMonth() + 1 + "." + t.getDate(); + "." + t.getFullYear();
+  window.localStorage.setItem(timething, content);
+  root = window.localStorage.getItem("ROOT");
+  window.localStorage.setItem("ROOT",",,"+timething+ root);
   read();
 }
 function setup() {
-  localStorage.clear();
-  localStorage.setItem("ROOT", "");
+  window.localStorage.clear();
+  window.localStorage.setItem("ROOT", "");
 }
 function read() {
-  if (!localStorage.getItem("ROOT")) {
+  if (!window.localStorage.getItem("ROOT")) {
     setup();
   }
-    var storelace = document.getElementById("record");
+  var storelace = document.getElementById("record");
   var storeRoot = window.localStorage.getItem('ROOT');
   if (storeRoot == "") {
     storelace.innerHTML = "<p class='javagen'>You haven't put anything yet</p>";
   }
-  rootlist = String(localStorage.getItem("ROOT")).split(',,');
+    var rootlist = String(localStorage.getItem("ROOT"));
+    var x;
+    for (x = 0; x < rootlist.length; x++) {
+      var litem = rootlist[x];
+      var storItem = window.localStorage.getItem(litem)
+      var temp = storelace.innerHTML;
+      storelace.innerHTML =  temp + "<h3>" + litem + '</h3> <p>' + storItem + "</p>"
+    }
+
+
 }
 
 read();
